@@ -20,3 +20,8 @@ export const loginSchema = z.object({
     username: z.string().nonempty("firstName is required"),
     password: z.string().nonempty("Password is required"),
 });
+
+export const editUserSchema = z.object({
+    firstName: z.string().nonempty("firstName is required"),
+    lastName: z.string().nonempty("lastName is required"),
+});

@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { AppDataSource } from "./ormconfig";
 import todoRoutes from "./routes/todoRoutes";
 import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "./docs/swagger";
 import cors from "cors";
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", todoRoutes);
+app.use("/api/user", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

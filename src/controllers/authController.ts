@@ -26,3 +26,20 @@ export const login = async (req: Request, res: Response) => {
     });
     res.json({ token, firstName: user.firstName, lastName: user.lastName });
 };
+
+export const editUser = async (req: Request, res: Response) => {
+    const { firstName, lastName } = req.body;
+    const user = await userRepository.findOneBy({ id: req.user.id });
+    if (!user) return res.sendStatus(404);
+
+    if (user.id !== req.user.id) {
+        res.status(403);
+        return;
+    }
+
+    user.firstName = firstName;
+    user.lastName = lastName;
+    userRepository.save(user);
+
+    res.json({ firstName, lastName });
+};
